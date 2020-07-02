@@ -134,8 +134,8 @@ class DuplicateSpiderNameLoaderTest(unittest.TestCase):
 
     def test_dupename_warning(self):
         # copy 1 spider module so as to have duplicate spider name
-        shutil.copyfile(os.path.join(self.tmpdir, 'test_spiders_xxx/spider3.py'),
-                        os.path.join(self.tmpdir, 'test_spiders_xxx/spider3dupe.py'))
+        shutil.copyfile(os.path.join(self.tmpdir, 'test_spiders_xxx', 'spider3.py'),
+                        os.path.join(self.tmpdir, 'test_spiders_xxx', 'spider3dupe.py'))
 
         with warnings.catch_warnings(record=True) as w:
             spider_loader = SpiderLoader.from_settings(self.settings)
@@ -156,10 +156,10 @@ class DuplicateSpiderNameLoaderTest(unittest.TestCase):
     def test_multiple_dupename_warning(self):
         # copy 2 spider modules so as to have duplicate spider name
         # This should issue 2 warning, 1 for each duplicate spider name
-        shutil.copyfile(os.path.join(self.tmpdir, 'test_spiders_xxx/spider1.py'),
-                        os.path.join(self.tmpdir, 'test_spiders_xxx/spider1dupe.py'))
-        shutil.copyfile(os.path.join(self.tmpdir, 'test_spiders_xxx/spider2.py'),
-                        os.path.join(self.tmpdir, 'test_spiders_xxx/spider2dupe.py'))
+        shutil.copyfile(os.path.join(self.tmpdir, 'test_spiders_xxx', 'spider1.py'),
+                        os.path.join(self.tmpdir, 'test_spiders_xxx', 'spider1dupe.py'))
+        shutil.copyfile(os.path.join(self.tmpdir, 'test_spiders_xxx', 'spider2.py'),
+                        os.path.join(self.tmpdir, 'test_spiders_xxx', 'spider2dupe.py'))
 
         with warnings.catch_warnings(record=True) as w:
             spider_loader = SpiderLoader.from_settings(self.settings)

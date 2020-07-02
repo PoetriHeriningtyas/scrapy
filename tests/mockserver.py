@@ -3,6 +3,7 @@ import json
 import os
 import random
 import sys
+import subprocess
 from subprocess import Popen, PIPE
 from urllib.parse import urlencode
 
@@ -20,6 +21,11 @@ from twisted.web.util import redirectTo
 from scrapy.utils.python import to_bytes, to_unicode
 from scrapy.utils.ssl import SSL_OP_NO_TLSv1_3
 from scrapy.utils.test import get_testenv
+
+
+# Workaround for Windows and Python < 3.7
+# https://bugs.python.org/issue37380
+subprocess._cleanup = lambda: None
 
 
 def getarg(request, name, default=None, type=None):
